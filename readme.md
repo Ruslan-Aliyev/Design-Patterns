@@ -2,6 +2,285 @@
 
 ## Tutorials
 
-https://sourcemaking.com/design_patterns/
+- https://sourcemaking.com/design_patterns/
+- https://www.youtube.com/playlist?list=PLF206E906175C7E07
+- https://en.wikipedia.org/wiki/Software_design_pattern
+- https://www.journaldev.com/31902/gangs-of-four-gof-design-patterns
+- https://tuxdoc.com/download/gang-of-four-design-patterns-40pdf_pdf
+- https://www.tutorialspoint.com/design_pattern/index.htm
+- https://sourcemaking.com/design_patterns
+- https://refactoring.guru/design-patterns/catalog
 
-https://www.youtube.com/playlist?list=PLF206E906175C7E07
+## Creational patterns
+
+### Factory 
+
+The factory pattern takes out the responsibility of instantiating a object from the class to a Factory class.
+
+```php
+class CarFactory
+{
+    public static function create(int $wheels = 4, float $fuel = 100.0): CarInterface
+    {
+        // Validate inputs...
+
+        return new CarInstance(
+            new Engine(),
+            $wheels,
+            $fuel
+        );
+    }
+}
+```
+
+Polymorphic example:
+```php
+class CarFactory
+{
+    public static function createSportscar(): CarInterface;
+    public static function createMinivan(): CarInterface;
+    public static function createSuperCar(): CarInterface;
+
+    public static function create(string $type = 'sports'): CarInterface;
+}
+```
+
+### Abstract Factory 
+
+Allows us to create a Factory for factory classes.
+
+```php
+
+```
+
+Factory vs Abstract Factory:
+
+- https://stackoverflow.com/questions/5739611/what-are-the-differences-between-abstract-factory-and-factory-design-patterns
+
+### Prototype
+
+Creating a new object instance from another similar instance and then modify according to our requirements.
+
+### Builder
+
+Creating an object step by step and a method to finally get the object instance.
+
+```php
+class CarBuilder
+{
+    protected $wheels = 4;
+    protected $fuel = 100.0;
+    protected $engine = null;
+
+    public function wheels(int $wheels): self
+    {
+        // Validate input...
+
+        $this->wheels = $wheels;
+
+        return $this;
+    }
+
+    public function fuel(float $fuel): self
+    {
+        // Validate input ...
+
+        $this->fuel = $fuel;
+
+        return $this;
+    }
+
+    public function engine(Engine $engine): self
+    {
+        // Validate input ...
+
+        $this->engine = $engine;
+
+        return $this;
+    }
+
+    public function build(): CarInterface
+    {
+        return new CarInstance(
+            $this->engine,
+            $this->wheels,
+            $this->fuel
+        );
+    }
+}
+
+// Build car with defaults.
+$builder = new CarBuilder();
+$car = $builder->build();
+
+// Build car with different fuel quantity.
+$builder = new CarBuilder();
+$car = $builder->fuel(999)->build();
+
+// Build car with different wheel quantity.
+$builder = new CarBuilder();
+$car = $builder->wheels(3)->build();
+
+// Build FULL car.
+$builder = new CarBuilder();
+$car = $builder
+        ->fuel(999)
+        ->wheels(3)
+        ->engine(
+            new Engine()
+        )
+        ->build();
+```
+
+### Singleton
+
+Only one instance of the class can be created.
+
+![](https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/singleton1_lazy.PNG)
+
+Thread safety issues:
+
+![](https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/singleton2_threadsafe_sync.PNG)
+
+![](https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/singleton3_threadsafe_eager.PNG)
+
+Testing issues:
+
+## Structural patterns
+
+### Adapter
+
+Provides an interface between two unrelated entities so that they can work together.
+
+### Bridge
+### Composite
+### Decorator
+### Facade
+### Flyweight
+### Proxy
+
+## Behavioural patterns
+
+### Chain of responsibility
+### Command
+### Interpreter
+### Iterator
+### Mediator
+### Memento
+### Observer
+
+```php
+// Observed
+class Subject
+{
+    private $observer;
+
+    function __construct(Observer $observer) 
+    {
+      $this->observer = $observer;
+    }
+
+    function notify() 
+    {
+      $this->observer->update($this);
+    }
+
+    function updateFavorites() 
+    {
+      $this->notify();
+    }
+
+    function getFavorites() 
+    {
+      return "Dummy Update Notice";
+    }
+}
+
+// Observer
+class Observer
+{
+    public function update(Subject $subject)
+    {
+      echo $subject->getFavorites() . "<br>";
+    }
+}
+
+// Run
+require_once("observer.php");
+require_once("subject.php");
+
+$gossipFan = new Observer();
+$gossiper = new Subject($gossipFan);
+
+$gossiper->updateFavorites();
+$gossiper->updateFavorites();
+```
+
+![](https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/observer.png)
+
+### State
+### Template method
+### Strategy
+
+Used when we have multiple algorithm for a specific task and client decides the actual implementation to be used at runtime.
+
+```php
+class ProductTax implements TaxInterface
+{
+    public function calculate(float $price) : float
+    {
+        return ($price * 1.20);
+    }
+}
+
+class Product implements ProductInterface
+{
+    protected $tax = null;
+
+    /**
+     * Dependency Injection / Strategy Pattern
+     */
+    public function __construct(TaxInterface $tax): void
+    {
+        $this->tax = $tax;
+    }
+
+    public function calculatePrice(): float
+    {
+        return $this->tax->calculate($this->price());
+    }
+}
+```
+
+### Visitor
+
+Perform an operation on a group of similar kind of Objects.
+
+```php
+class ProductTax implements TaxInterface
+{
+    public function calculate(ProductInterface $product) : float
+    {
+        return ($product->price() * 1.20);
+    }
+}
+
+class Product implements ProductInterface
+{
+    /**
+     * Visitor Pattern
+     */
+    public function calculatePrice(TaxInterface $tax): float
+    {
+        return $tax->calculate($this);
+    }
+}
+```
+
+
+Visitor vs Strategy: Visitor pattern allows **Double Dispatch**
+
+- https://stackoverflow.com/questions/8665295/what-is-the-difference-between-strategy-pattern-and-visitor-pattern
+- https://www.youtube.com/watch?v=TeZqKnC2gvA
+
+## SOLID
