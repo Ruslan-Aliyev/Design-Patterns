@@ -307,3 +307,5 @@ Visitor vs Strategy: Visitor pattern allows **Double Dispatch**
 - https://www.youtube.com/watch?v=TeZqKnC2gvA
 
 ## SOLID
+
+![](https://raw.githubusercontent.com/Ruslan-Aliyev/Design-Patterns/master/Illustrations/SOLID.jpg)
