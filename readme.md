@@ -164,34 +164,67 @@ Provides an interface between two unrelated entities so that they can work toget
 
 ### Decorator
 
+**Modify/add functionality to an object at runtime.**
+
 ![](/Illustrations/decorator.png)
 
-This type of composition is better than inheritance. With inheritance, if top class changes, everything below needs to be refactored.
+This type of composition is **better than inheritance. With inheritance, if top class changes, everything below needs to be refactored.**
 
-The decorator pattern allows an entity to completely contain another entity so that using the decorator looks identical to the contained entity. This allows the decorator to modify the behaviour and/or content of whatever it is encapsulating without changing the outward appearance of the entity. For example, you might use a decorator to add logging output on the usage of the contained element without changing any behaviour of the contained element. 
+The decorator pattern allows an entity to completely contain another entity so that using the decorator looks identical to the contained entity. This allows the decorator to **modify the behaviour and/or content of whatever it is encapsulating without changing the outward appearance of the entity**. For example, you might use a decorator to add logging output on the usage of the contained element without changing any behaviour of the contained element. 
 (http://en.wikipedia.org/wiki/Decorator_pattern)
 
 ### Composite 
 
+Handle individual objects and composites uniformly. Eg handle a book and a collection of books the same way.
+
 ![](/Illustrations/composite.png)
 
 Decorator & Composite usually go hand in and hand. In that using the composite pattern often leads to also using the decorator pattern.
+
 The composite pattern allows you to build a hierarchical structure (such as a tree of elements) in a way that allows your external code to view the entire structure as a single entity. So the interface to a leaf entity is exactly the same as the entity for a compound entity. So the essence is that all elements in your composite structure have the same interface even though some are leaf nodes and others are entire structures. User interfaces often use this approach to allow easy composability. 
 (http://en.wikipedia.org/wiki/Composite_pattern)
 
 ### Facade
+
+Creating a wrapper interfaces on top of existing interfaces to help client applications.
+
 ### Flyweight
+
+Caching and reusing object instances, when there is a need to create objects that varies little.
+
+![](/Illustrations/flyweight1.png)
+
+![](/Illustrations/flyweight2.png)
+
+![](/Illustrations/flyweight3.png)
+
 ### Proxy
 
 ## Behavioural patterns
 
 ### Chain of responsibility
+
+Request is passed to a sequential chain of handlers.
+
+![](/Illustrations/chain_responsibility.png)
+
 ### Command
+
+When a command (which is normally a function) is made into an object.
+
 ### Interpreter
 ### Iterator
 ### Mediator
+
+Provide a centralized communication medium between different objects in a system.
+
 ### Memento
+
+Used to save a history of an object's past states.
+
 ### Observer
+
+Useful when you are interested in the state of an object and want to get notified whenever there is any change.
 
 ```php
 // Observed
@@ -244,6 +277,11 @@ $gossiper->updateFavorites();
 
 ### State
 ### Template method
+
+When algorithms are roughly the same. 
+
+Eg: parsers/processors of different file formats - the reading part, the data re-organizing part, etc... are all the same. The only bit of difference is the parsing of different file formats.
+
 ### Strategy
 
 Used when we have multiple algorithm for a specific task and client decides the actual implementation to be used at runtime.
