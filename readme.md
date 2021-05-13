@@ -61,6 +61,8 @@ Factory vs Abstract Factory:
 
 Creating a new object instance from another similar instance and then modify according to our requirements.
 
+https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/factory_prototype_builder.pdf
+
 ### Builder
 
 Creating an object step by step and a method to finally get the object instance.
@@ -152,9 +154,31 @@ Testing issues:
 
 Provides an interface between two unrelated entities so that they can work together.
 
+![](/Illustrations/adaptor.png)
+
 ### Bridge
-### Composite
+
+![](/Illustrations/bridge0.JPG)
+
+![](/Illustrations/bridge.png)
+
 ### Decorator
+
+![](/Illustrations/decorator.png)
+
+This type of composition is better than inheritance. With inheritance, if top class changes, everything below needs to be refactored.
+
+The decorator pattern allows an entity to completely contain another entity so that using the decorator looks identical to the contained entity. This allows the decorator to modify the behaviour and/or content of whatever it is encapsulating without changing the outward appearance of the entity. For example, you might use a decorator to add logging output on the usage of the contained element without changing any behaviour of the contained element. 
+(http://en.wikipedia.org/wiki/Decorator_pattern)
+
+### Composite 
+
+![](/Illustrations/composite.png)
+
+Decorator & Composite usually go hand in and hand. In that using the composite pattern often leads to also using the decorator pattern.
+The composite pattern allows you to build a hierarchical structure (such as a tree of elements) in a way that allows your external code to view the entire structure as a single entity. So the interface to a leaf entity is exactly the same as the entity for a compound entity. So the essence is that all elements in your composite structure have the same interface even though some are leaf nodes and others are entire structures. User interfaces often use this approach to allow easy composability. 
+(http://en.wikipedia.org/wiki/Composite_pattern)
+
 ### Facade
 ### Flyweight
 ### Proxy
@@ -276,7 +300,6 @@ class Product implements ProductInterface
     }
 }
 ```
-
 
 Visitor vs Strategy: Visitor pattern allows **Double Dispatch**
 
