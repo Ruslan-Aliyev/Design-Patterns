@@ -212,8 +212,24 @@ Request is passed to a sequential chain of handlers.
 
 When a command (which is normally a function) is made into an object.
 
+- It can be called later.
+- It become undo-able.
+- The command can be called from many different places.
+
+![](/Illustrations/command1.png)
+
+![](/Illustrations/command2.png)
+
+https://sourcemaking.com/design_patterns/command
+
 ### Interpreter
 ### Iterator
+
+Access the elements of an aggregate object sequentially without exposing its underlying representation.
+
+- https://www.tutorialspoint.com/design_pattern/iterator_pattern.htm
+- https://sourcemaking.com/design_patterns/iterator/php
+
 ### Mediator
 
 Provide a centralized communication medium between different objects in a system.
@@ -221,6 +237,8 @@ Provide a centralized communication medium between different objects in a system
 ### Memento
 
 Used to save a history of an object's past states.
+
+https://sourcemaking.com/design_patterns/memento/php
 
 ### Observer
 
@@ -281,6 +299,8 @@ $gossiper->updateFavorites();
 When algorithms are roughly the same. 
 
 Eg: parsers/processors of different file formats - the reading part, the data re-organizing part, etc... are all the same. The only bit of difference is the parsing of different file formats.
+
+![](/Illustrations/template.png)
 
 ### Strategy
 
