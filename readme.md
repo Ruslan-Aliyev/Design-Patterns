@@ -146,6 +146,10 @@ Thread safety issues:
 
 ![](https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/singleton3_threadsafe_eager.PNG)
 
+![](https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/PHP_Singleton_vs_Static.jpg)
+
+https://github.com/Ruslan-Aliyev/Design-Patterns/blob/master/Illustrations/PHP_Singleton.pdf
+
 Testing issues:
 
 ## Structural patterns
